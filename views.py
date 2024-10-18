@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template,request
 
 views = Blueprint(__name__, "views")
 
@@ -6,8 +6,12 @@ views = Blueprint(__name__, "views")
 def home():
     return render_template("index.html")
 
-@views.route("/donate")
+@views.route("/donate",methods = ["POST", "GET"])
 def donate():
+    #recieve data from front end
+    if request.method == "POST":
+        data = request.get_json()
+        print(data)
     return render_template("donate.html")
 
 @views.route("/deliver")
