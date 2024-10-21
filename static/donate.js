@@ -1,4 +1,12 @@
-
+// Create object to send requests//
+let xhr = null
+getXmlHttpRequestObject = function(){
+    if (!xhr){
+        //create a new http request object if it doesn't exist already
+        xhr = new XMLHttpRequest()
+    }
+    return xhr
+}
 function SendDonateData(){ 
     //get input values from input field//
     let nameinput = document.getElementById("full-name").value
@@ -25,10 +33,17 @@ function SendDonateData(){
 
     //Send postresquest
     xhr.open("POST","http://127.0.0.1:8000/views/donate",true)
-
+    //Tell server to accept files in json format
+    xhr.setRequestHeader("Accept","application/json")
+    xhr.setRequestHeader("Content-Type","application/json")
     //attach (staple) data to request
     //JSON IS A DICTIONARY. (NAME OF DATA AND DATA)
-    xhr.send(JSON.stringify({"name": nameinput, "email": emailinput}))
+    xhr.send(JSON.stringify({"name": nameinput, 
+                             "email": emailinput, 
+                             "meal-name": mealninput, 
+                             "meal-image": mealiinput, 
+                             "meal-ingredients": mealinginput,
+                             "allergies": allergies }))
 
 }
 

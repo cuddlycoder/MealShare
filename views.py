@@ -12,10 +12,15 @@ def donate():
     if request.method == "POST":
         data = request.get_json()
         print(data)
+        print(data["name"])
     return render_template("donate.html")
 
-@views.route("/deliver")
+@views.route("/deliver", methods = ["POST", "GET"])
 def deliver():
+    #recieve data from front end
+    if request.method == "POST":
+        data = request.get_json()
+        print(data)
     return render_template("deliver.html")
 
 @views.route("/login")
