@@ -8,6 +8,11 @@ document.getElementById("deliver-btn").addEventListener("click",function(event){
     window.location.href = "http://127.0.0.1:8000/views/deliver"
 })
 
+//Sebd user to recieve page
+document.getElementById("receive-btn").addEventListener("click",function(event){
+    window.location.href = "http://127.0.0.1:8000/views/receive"
+})
+
 //Send user to login page
 document.getElementById("signin-btn").addEventListener("click",function(event){
     window.location.href = "http://127.0.0.1:8000/views/login"

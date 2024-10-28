@@ -23,6 +23,11 @@ def deliver():
         print(data)
     return render_template("deliver.html")
 
+@views.route("/receive")
+def receive():
+    foods = [["apples","image","seed,skin,white stuff","fruit allergy"]]    
+    return render_template("receive.html",meals = foods)
+
 @views.route("/login")
 def login():
     return render_template("login.html")
