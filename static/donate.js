@@ -20,6 +20,8 @@ function SendDonateData(){
 
     let mealiinput = document.getElementById("meal-image").value
     console.log(mealiinput)
+    const file = mealiinput.files[0]
+    console.log(file)
 
     let mealinginput = document.getElementById("meal-ing").value
     console.log(mealinginput)

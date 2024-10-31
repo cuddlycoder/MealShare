@@ -1,6 +1,9 @@
 from flask import Blueprint, render_template,request
-
 views = Blueprint(__name__, "views")
+
+foods = []
+
+
 
 @views.route("/")
 def home():
@@ -8,11 +11,15 @@ def home():
 
 @views.route("/donate",methods = ["POST", "GET"])
 def donate():
+    global foods
     #recieve data from front end
-    if request.method == "POST":
+    if request.method == "POST": 
         data = request.get_json()
         print(data)
         print(data["name"])
+        image = request.files["image"]
+        donatedfood = [data["name"],data["email"],data["meal-name"],data["meal-image"],data["meal-ingredients"],data["allergies"]]
+        foods.append(donatedfood)
     return render_template("donate.html")
 
 @views.route("/deliver", methods = ["POST", "GET"])
@@ -25,7 +32,8 @@ def deliver():
 
 @views.route("/receive")
 def receive():
-    foods = [["apples","image","seed,skin,white stuff","fruit allergy"]]    
+    global foods
+    #foods = [["apples","image","seed,skin,white stuff","fruit allergy"]]    
     return render_template("receive.html",meals = foods)
 
 @views.route("/login")

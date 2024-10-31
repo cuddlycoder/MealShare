@@ -12,10 +12,10 @@
     <div id = "meal-container">
         {% for meal in meals %}
             <div id = "meal">
-                <h2> {{ meal[1] }} </h3>
-                <h3>{{ meal[0] }}</h3>
-                <h5>{{ meal[2] }}</h5>
-                <h5>{{ meal[3] }}</h5>
+                <img src = "../static/images/imagetest.png" alt = "Image">
+                <h3>{{ meal[2] }}</h3>
+                <h5> Ingredients - {{ meal[4] }}</h5>
+                <h5>Allergies - {{ meal[5] }}</h5>
             </div>
         {% endfor %}
     </div>
