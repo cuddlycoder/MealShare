@@ -14,9 +14,7 @@ app.register_blueprint(views,url_prefix = "/views")
 
 
 
-imagesfolder = "static/images"
-os.makedirs(imagesfolder,exist_ok = True)
-app.config["image_folder"] = imagesfolder
+
 
 
 if __name__ == "__main__": 

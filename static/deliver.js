@@ -25,12 +25,25 @@ function SendDeliverData(){
     let cartype = document.getElementById("car-type").value
     console.log(cartype)
 
+    let confirm_deliver = document.getElementById("confirm_deliver")
+    confirm_deliver.innerHTML = ""
+
     //Send Data to backend using PostRequest method  
     //allows us to send data to backend using http postrequest
     xhr = getXmlHttpRequestObject()
 
     //Send postresquest
     xhr.open("POST","http://127.0.0.1:8000/views/deliver",true)
+    xhr.onload = function(){
+        if (xhr.status === 200){
+            confirm_deliver.innerHTML = "Your information has been sent! Thank you!"
+            confirm_deliver.style.color = "green"
+        }
+        else{
+            confirm_deliver.innerHTML = "Upload failed! Please try again!"
+            confirm_deliver.style.color = "red"
+        }
+    }
 
     xhr.setRequestHeader("Accept","application/json")
     xhr.setRequestHeader("Content-Type","application/json")

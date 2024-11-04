@@ -15,12 +15,16 @@ function SendDonateData(){
     let emailinput = document.getElementById("email-add").value
     console.log(emailinput)
 
+    let addressinput = document.getElementById("address").value
+    console.log(addressinput)
+
     let mealninput = document.getElementById("meal-name").value
     console.log(mealninput)
 
-    let mealiinput = document.getElementById("meal-image").value
+    let mealiinput = document.getElementById("meal-image")
     console.log(mealiinput)
-    const file = mealiinput.files[0]
+    //get image from input field
+    let file = mealiinput.files[0]
     console.log(file)
 
     let mealinginput = document.getElementById("meal-ing").value
@@ -29,23 +33,48 @@ function SendDonateData(){
     let allergies = document.getElementById("alle-rgies").value
     console.log(allergies)
 
+    let confirm_message = document.getElementById("confirmation")
+    let confirmation_done = document.getElementById("confirmation_done")
+
+    if (!file){
+        confirm_message.innerHTML = "Please select a meal image!"
+        confirm_message.style.color = "red"
+        return 
+    }
+    //clear old messages
+    confirm_message.innerHTML = ""
+    confirmation_done.innerHTML = ""
+
+    const formdata = new FormData()
+    
+    //attach (staple) data to request
+    //JSON IS A DICTIONARY. (NAME OF DATA AND DATA)
+    formdata.append("image",file)
+    formdata.append("data",JSON.stringify({ "name": nameinput, 
+                                            "email": emailinput,
+                                            "address": addressinput,  
+                                            "meal-name": mealninput,  
+                                            "meal-ingredients": mealinginput,
+                                            "allergies": allergies }))
+
     //Send Data to backend using PostRequest method  
     //allows us to send data to backend using http postrequest
     xhr = getXmlHttpRequestObject()
 
     //Send postresquest
     xhr.open("POST","http://127.0.0.1:8000/views/donate",true)
-    //Tell server to accept files in json format
-    xhr.setRequestHeader("Accept","application/json")
-    xhr.setRequestHeader("Content-Type","application/json")
-    //attach (staple) data to request
-    //JSON IS A DICTIONARY. (NAME OF DATA AND DATA)
-    xhr.send(JSON.stringify({"name": nameinput, 
-                             "email": emailinput, 
-                             "meal-name": mealninput, 
-                             "meal-image": mealiinput, 
-                             "meal-ingredients": mealinginput,
-                             "allergies": allergies }))
+    xhr.onload = function(){
+        if (xhr.status === 200){
+            confirmation_done.innerHTML = "Your information has been sent! Thank you!"
+            confirmation_done.style.color = "green"
+        }
+        else{
+            confirmation_done.innerHTML = "File upload failed! Please try again!"
+            confirmation_done.style.color = "red"
+        }
+    }
+    
+    xhr.send(formdata)
 
 }
 

@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class = "main_section">
-        <h1>&#129330;&nbsp;DONATE&nbsp;&#129330; </h1>
+        <h1>    DONATE    </h1>
 
         <form action="" id="donate-form">
             <!--Name Input-->
@@ -24,6 +24,10 @@
                 <input type="email" name="email" class="form-control" id = "email-add" placeholder="jimmym123@yahoo.com">
             </div>
             <br>
+            <!--Address Input-->
+            <div class = "input-form">
+                <label for="address">Address</label>
+                <input type="text" name="address" class="form-control" id = "address" placeholder="123 Lorem. Ave.">
             <br>
             <br>
             <br>
@@ -39,6 +43,10 @@
                 <label for="meal-image">Meal Image</label>
                 <input type="file" name="meal-image" class="form-control" id = "meal-image" accept="image/*">
             </div>
+
+            <!--Confirmation message-->
+            <div id = "confirmation"></div>
+
             <br>
             <!--Meal Ingredients Input-->
             <div class = "input-form">
@@ -53,10 +61,13 @@
             </div>
             
         </form>
-         <!--Drop-Off and Send-->
+        
+        <div id = "confirmation_done"></div>
+         
+        <!--Drop-Off and Send-->
          <div class="dropoff_send">
             <p>Choose whether to drop off the food yourself or send it through a delivery person. Drop Off means that you will be delivering the food. Send means that a delivery person will come to pick up the food from your area and then drop it off.</p>
-            <button class="Sbtn" id="dropoff">Drop Off</button>
+            <!-- <button class="Sbtn" id="dropoff">Drop Off</button> -->
             <button class="Sbtn" id="send">Send</button>
             
 
